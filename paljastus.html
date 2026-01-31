@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEILLÄ TORNIOSSA 2026 - PALJASTUS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Toistuva vihjeteksti taustalla - VAIN ohjelma-laatikossa */
+        .hints-background {
+            /* Tyylit määritelty .program-teaser .hints-background ja .registration .hints-background kohdassa */
+        }
+
+        /* Liekkirevontulet */
+        .flame {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 60px solid #ff6b00;
+            opacity: 0.6;
+            animation: flicker 2s infinite;
+            filter: blur(5px);
+        }
+
+        @keyframes flicker {
+            0%, 100% { 
+                transform: translateY(0) scaleY(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-20px) scaleY(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .reveal-badge {
+            text-align: center;
+            font-size: 2em;
+            color: #ffd700;
+            margin-bottom: 40px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            50% { text-shadow: 0 0 40px rgba(255, 215, 0, 1); }
+        }
+
+        .info-section {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3);
+            overflow: hidden;
+        }
+
+        .info-section .hints-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.04;
+            font-size: 0.6em;
+            font-weight: normal;
+            color: #ffffff;
+            z-index: 1;
+            overflow: hidden;
+            word-wrap: break-word;
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        .info-section > * {
+            position: relative;
+            z-index: 10;
+        }
+
+        .info-title {
+            font-size: 1.8em;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .info-item {
+            font-size: 1.3em;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .info-item strong {
+            color: #ffd700;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        .program-teaser {
+            position: relative;
+            text-align: center;
+            font-size: 1.5em;
+            color: #ffd700;
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            overflow: hidden;
+        }
+
+        .program-teaser .hints-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.04;
+            font-size: 0.6em;
+            font-weight: normal;
+            color: #ffffff;
+            z-index: 1;
+            overflow: hidden;
+            word-wrap: break-word;
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        .program-teaser > div:not(.hints-background),
+        .program-teaser > .countdown-small {
+            position: relative;
+            z-index: 10;
+        }
+
+        .countdown-small {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .time-unit-small {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 12px;
+            padding: 15px 10px;
+            min-width: 90px;
+            text-align: center;
+        }
+
+        .time-value-small {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ffd700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+        }
+
+        .time-label-small {
+            font-size: 0.8em;
+            color: #ddd;
+            margin-top: 5px;
+            text-transform: uppercase;
+        }
+
+        .registration {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 215, 0, 0.2));
+            border: 3px solid #ffd700;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .registration .hints-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            opacity: 0.04;
+            font-size: 0.6em;
+            font-weight: normal;
+            color: #ffffff;
+            z-index: 1;
+            overflow: hidden;
+            word-wrap: break-word;
+            line-height: 1.6;
+            padding: 15px;
+        }
+
+        .registration > * {
+            position: relative;
+            z-index: 10;
+        }
+
+        .registration h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .registration-details {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .registration-details strong {
+            color: #ff6b6b;
+        }
+
+        .music-section {
+            margin: 40px 0;
+            padding: 25px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            text-align: center;
+        }
+
+        .music-title {
+            font-size: 1.3em;
+            color: #ffd700;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .music-teaser {
+            margin: 20px 0;
+        }
+
+        .music-button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            border: 3px solid #ffd700;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: musicPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .music-button:hover {
+            background: linear-gradient(135deg, #ffed4e, #ffd700);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .music-player {
+            margin-top: 15px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        audio {
+            width: 100%;
+            filter: sepia(20%) saturate(70%) hue-rotate(5deg);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .reveal-badge {
+                font-size: 1.5em;
+            }
+            .info-item {
+                font-size: 1.1em;
+            }
+            .time-unit-small {
+                min-width: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Liekkirevontulet -->
+    <div class="flame" style="left: 5%; animation-delay: 0s;"></div>
+    <div class="flame" style="left: 15%; animation-delay: 0.3s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 25%; animation-delay: 0.6s;"></div>
+    <div class="flame" style="left: 35%; animation-delay: 0.2s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 45%; animation-delay: 0.8s;"></div>
+    <div class="flame" style="left: 55%; animation-delay: 0.4s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 65%; animation-delay: 0.1s;"></div>
+    <div class="flame" style="left: 75%; animation-delay: 0.7s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 85%; animation-delay: 0.5s;"></div>
+    <div class="flame" style="left: 95%; animation-delay: 0.9s; border-bottom-color: #ff8e00;"></div>
+
+    <div class="container">
+        <h1>MEILLÄ TORNIOSSA 2026</h1>
+        <div class="reveal-badge">🎉 PÄIVÄMÄÄRÄT PALJASTETTU! 🎉</div>
+
+        <!-- Reissutiedot -->
+        <div class="info-section">
+            <div class="hints-background">
+                ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI
+            </div>
+            <div class="info-title">📅 Aikataulu</div>
+            <div class="info-item">
+                <strong>Lähtö:</strong> 16.7.2026 klo 00:26 (yöjuna)
+            </div>
+            <div class="info-item">
+                <strong>Paluu:</strong> 19.7.2026 klo ~16:00 (Tampere)
+            </div>
+            <div class="info-item">
+                <strong>Kesto:</strong> 3 yötä, 4 päivää
+            </div>
+        </div>
+
+        <!-- Ohjelma teaser -->
+        <div class="program-teaser">
+            <div class="hints-background">
+                14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS
+            </div>
+            
+            <div style="font-size: 1.8em; margin-bottom: 15px;">
+                🔮 ENSIMMÄISET OHJELMA PALJASTUKSET 🔮
+            </div>
+            <div style="font-size: 1.2em; margin-bottom: 20px;">
+                14.2.2026 klo 22:00
+            </div>
+            
+            <div class="countdown-small" id="programCountdown">
+                <div class="time-unit-small">
+                    <div class="time-value-small" id="days">00</div>
+                    <div class="time-label-small">Päivää</div>
+                </div>
+                <div class="time-unit-small">
+                    <div class="time-value-small" id="hours">00</div>
+                    <div class="time-label-small">Tuntia</div>
+                </div>
+                <div class="time-unit-small">
+                    <div class="time-value-small" id="minutes">00</div>
+                    <div class="time-label-small">Minuuttia</div>
+                </div>
+                <div class="time-unit-small">
+                    <div class="time-value-small" id="seconds">00</div>
+                    <div class="time-label-small">Sekuntia</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ilmoittautuminen -->
+        <div class="registration">
+            <div class="hints-background">
+                UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI
+            </div>
+            <h2>📝 ILMOITTAUTUMINEN</h2>
+            <div class="registration-details">
+                Nähdään asemamestarissa!<br><br>
+                Ilmoita Vesalle:<br>
+                <strong>Lähetkö mukaan?</strong><br><br>
+                <strong>• Paitakoko</strong><br>
+                <strong>• Kengänkoko</strong><br>
+                <strong>• Kätisyys</strong> (vasen/oikea)<br>
+                <strong>• Lempiväri</strong><br>
+                <strong>• Osoite</strong>
+            </div>
+        </div>
+
+        <!-- Musiikki -->
+        <div class="music-section">
+            <div class="music-title">🎵 MEILLÄ TORNIOSSA - Teaser biisi</div>
+            <div class="music-teaser">
+                <button onclick="toggleMusic()" id="musicButton" class="music-button">
+                    🎵 KUUNTELE BIISI 🎵
+                </button>
+                <div id="musicPlayer" class="music-player" style="display: none;">
+                    <audio id="audioPlayer" controls>
+                        <source src="tornio-song.mp3" type="audio/mpeg">
+                        Selaimesi ei tue äänentoistoa.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Laskuri 14.2.2026 klo 22:00
+        const programRevealDate = new Date('2026-02-14T22:00:00').getTime();
+
+        function updateProgramCountdown() {
+            const now = new Date().getTime();
+            const distance = programRevealDate - now;
+
+            if (distance < 0) {
+                document.getElementById('programCountdown').innerHTML = 
+                    '<div class="time-unit-small"><div class="time-value-small">🎉</div></div>' +
+                    '<div style="font-size: 1.5em; margin-top: 20px;">OHJELMAA PALJASTETTU!</div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateProgramCountdown();
+        setInterval(updateProgramCountdown, 1000);
+
+        // Biisisoittimen toggle
+        function toggleMusic() {
+            const player = document.getElementById('musicPlayer');
+            const button = document.getElementById('musicButton');
+            const audio = document.getElementById('audioPlayer');
+            
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
+                button.textContent = '🎵 SULJE SOITIN 🎵';
+                audio.play();
+            } else {
+                player.style.display = 'none';
+                button.textContent = '🎵 KUUNTELE BIISI 🎵';
+                audio.pause();
+            }
+        }
+    </script>
+</body>
+</html>
