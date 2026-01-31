@@ -459,9 +459,8 @@
             const distance = targetDate - now;
 
             if (distance < 0) {
-                document.getElementById('countdown').innerHTML = '<div class="time-unit"><div class="time-value">🎉</div></div>';
-                document.getElementById('message').innerHTML = 'NYT PALJASTUU! Tarkista viestit! 🔥🍻';
-                document.querySelector('.guess-game').style.display = 'none';
+                // Ohjaa paljastussivulle
+                window.location.href = 'paljastus.html';
                 return;
             }
 
