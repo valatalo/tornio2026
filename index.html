@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEILLÄ TORNIOSSA 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Liekkirevontulet */
+        .flame {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 60px solid #ff6b00;
+            opacity: 0.6;
+            animation: flicker 2s infinite;
+            filter: blur(5px);
+        }
+
+        @keyframes flicker {
+            0%, 100% { 
+                transform: translateY(0) scaleY(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-20px) scaleY(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        @keyframes rise {
+            to {
+                bottom: 110vh;
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+            animation: pulse 2s ease-in-out infinite;
+            letter-spacing: 2px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            margin-bottom: 40px;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: 15px;
+            padding: 25px 20px;
+            min-width: 120px;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .time-unit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4);
+        }
+
+        .time-value {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ff6b6b;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+        }
+
+        .time-label {
+            font-size: 0.9em;
+            color: #ddd;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .emoji {
+            font-size: 3em;
+            margin: 20px 0;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .guess-game {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .guess-title {
+            font-size: 1.3em;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .guess-input {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        input[type="date"] {
+            padding: 12px 20px;
+            font-size: 1.1em;
+            border: 2px solid rgba(255, 107, 107, 0.5);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        input[type="date"]:focus {
+            outline: none;
+            border-color: #ff6b6b;
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        button:active {
+            transform: translateY(-1px);
+        }
+
+        .mystery-response {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 107, 0.4);
+            font-size: 1.1em;
+            min-height: 50px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #ffd700;
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .ticking {
+            animation: shake 0.5s ease infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-3px); }
+            75% { transform: translateX(3px); }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .subtitle {
+                font-size: 1.2em;
+            }
+            .time-unit {
+                min-width: 80px;
+                padding: 15px 10px;
+            }
+            .time-value {
+                font-size: 2em;
+            }
+            input[type="date"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Liekkirevontulet -->
+    <div class="flame" style="left: 5%; animation-delay: 0s;"></div>
+    <div class="flame" style="left: 15%; animation-delay: 0.3s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 25%; animation-delay: 0.6s;"></div>
+    <div class="flame" style="left: 35%; animation-delay: 0.2s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 45%; animation-delay: 0.8s;"></div>
+    <div class="flame" style="left: 55%; animation-delay: 0.4s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 65%; animation-delay: 0.1s;"></div>
+    <div class="flame" style="left: 75%; animation-delay: 0.7s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 85%; animation-delay: 0.5s;"></div>
+    <div class="flame" style="left: 95%; animation-delay: 0.9s; border-bottom-color: #ff8e00;"></div>
+
+    <!-- Kuplat -->
+    <div class="bubble" style="width: 80px; height: 80px; left: 10%; animation-delay: 0s;"></div>
+    <div class="bubble" style="width: 60px; height: 60px; left: 30%; animation-delay: 2s;"></div>
+    <div class="bubble" style="width: 100px; height: 100px; left: 50%; animation-delay: 4s;"></div>
+    <div class="bubble" style="width: 70px; height: 70px; left: 70%; animation-delay: 1s;"></div>
+    <div class="bubble" style="width: 90px; height: 90px; left: 85%; animation-delay: 3s;"></div>
+
+    <div class="container">
+        <h1>MEILLÄ TORNIOSSA 2026</h1>
+        <div class="subtitle">Päivämäärä paljastuu...</div>
+        
+        <div class="emoji">🔥🍻🧖‍♂️</div>
+
+        <div class="countdown" id="countdown">
+            <div class="time-unit">
+                <div class="time-value" id="hours">00</div>
+                <div class="time-label">Tuntia</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="minutes">00</div>
+                <div class="time-label">Minuuttia</div>
+            </div>
+            <div class="time-unit">
+                <div class="time-value" id="seconds">00</div>
+                <div class="time-label">Sekuntia</div>
+            </div>
+        </div>
+
+        <!-- Arvaa päivä -peli -->
+        <div class="guess-game">
+            <div class="guess-title">🔮 Arvaa reissun päivä</div>
+            <div class="guess-input">
+                <input type="date" id="guessDate" min="2026-02-01" max="2026-12-31">
+                <button onclick="makeGuess()">Arvaa!</button>
+            </div>
+            <div class="mystery-response" id="mysteryResponse">
+                Uskallat kokeilla...? 👁️
+            </div>
+        </div>
+
+        <div class="message" id="message">
+            Valmistaudu eeppiseen seikkailuun! 🎉
+        </div>
+    </div>
+
+    <!-- Tikitysääni (luodaan JavaScriptillä) -->
+    <audio id="tickSound" preload="auto"></audio>
+
+    <script>
+        const targetDate = new Date('2026-01-31T23:59:00').getTime();
+        let tickingStarted = false;
+        let audioContext;
+        
+        // Mysteeristen vastausten lista
+        const mysteryResponses = [
+            "Tähtikuviot vihjailevat... mutta eivät paljasta 🌟",
+            "Saunan kiuas kuiskaa totuutta... kuuletko? 🧖‍♂️",
+            "Revontulet tanssivat... väärään tahtiin ❄️",
+            "Liekki värähtää... lähellä, mutta ei vielä 🔥",
+            "Kesäyö on pitkä ja täynnä mysteerejä 🌙",
+            "Pohjoisen tuuli kantaa viestiä... mutta ei sinulle 💨",
+            "Kylmä... kuin jääkylpy Torniojoen vedessä 🥶",
+            "Lämmin... kuin ensimmäinen löyly 🌡️",
+            "Polttavan kuuma! Mutta väärä lauteetaso 🔥🧖",
+            "Kalenterisi on mystinen... kuin Tornion historia 📅",
+            "Aika on suhteellista... varsinkin Tornion kesässä ⏰",
+            "Rajalla kulkee paljon muutakin kuin ihmiset 🇫🇮🇸🇪",
+            "Olut on kylmää, mutta arvauksesi lämmintä 🍺",
+            "Yrityksestä pisteet! Mutta ei vielä kultamitalia 🏅",
+            "Kuu on täynnä salaisuuksia... tämäkin 🌕",
+            "Näen tulevaisuuteen... mutta en kerro sitä sinulle 🔮",
+            "Kohtalon pyörä pyörii... väärään suuntaan 🎡",
+            "Kristallipallo näyttää... sumuista 💎",
+            "Tiet vievät moneen suuntaan... tämä väärään 🛣️",
+            "Totuus on jossain... mutta ei vielä löytynyt 🕵️",
+            "Hyvä yritys! Mutta Tornio on täynnä yllätyksiä 🎭",
+            "Lähellä... kaukana... kuka voi sanoa? 🤷",
+            "Sauna on kuuma, olut kylmä, arvaus... jotain siltä väliltä 🍻",
+            "Kesän magia ei kerro salaisuuksiaan helpolla ✨",
+            "Pohjolan henget nauraavat arvauksellesi 👻"
+        ];
+
+        function makeGuess() {
+            const dateInput = document.getElementById('guessDate');
+            const responseDiv = document.getElementById('mysteryResponse');
+            
+            if (!dateInput.value) {
+                responseDiv.textContent = "Valitse ensin päivä, uskaltaja! 🎯";
+                return;
+            }
+
+            // Satunnainen mysteerinen vastaus
+            const randomResponse = mysteryResponses[Math.floor(Math.random() * mysteryResponses.length)];
+            responseDiv.textContent = randomResponse;
+            
+            // Animoi vastaus
+            responseDiv.style.animation = 'none';
+            setTimeout(() => {
+                responseDiv.style.animation = 'fadeIn 0.5s ease';
+            }, 10);
+        }
+
+        // Luo tikitysääni Web Audio API:lla
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        }
+
+        function playTick() {
+            if (!audioContext) return;
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = 800;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + 0.1);
+        }
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<div class="time-unit"><div class="time-value">🎉</div></div>';
+                document.getElementById('message').innerHTML = 'NYT PALJASTUU! Tarkista viestit! 🔥🍻';
+                document.querySelector('.guess-game').style.display = 'none';
+                return;
+            }
+
+            const hours = Math.floor(distance / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+
+            // Tikitysääni viimeisen minuutin aikana
+            if (hours === 0 && minutes === 0 && seconds <= 60) {
+                if (!tickingStarted) {
+                    tickingStarted = true;
+                    document.querySelector('.countdown').classList.add('ticking');
+                }
+                if (seconds > 0) {
+                    playTick();
+                }
+            }
+        }
+
+        // Käyttäjän interaktio tarvitaan äänen soittamiseen
+        document.body.addEventListener('click', function() {
+            if (!audioContext) {
+                initAudio();
+            }
+        }, { once: true });
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
