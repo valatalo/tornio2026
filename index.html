@@ -229,6 +229,49 @@
             border: 1px solid rgba(255, 215, 0, 0.3);
         }
 
+        .music-teaser {
+            margin: 30px 0;
+        }
+
+        .music-button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            border: 3px solid #ffd700;
+            font-weight: bold;
+            animation: musicPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes musicPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% { 
+                transform: scale(1.05);
+                box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        .music-button:hover {
+            background: linear-gradient(135deg, #ffed4e, #ffd700);
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        .music-player {
+            margin-top: 15px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            animation: fadeIn 0.5s ease;
+        }
+
+        audio {
+            filter: sepia(20%) saturate(70%) hue-rotate(5deg);
+        }
+
         .ticking {
             animation: shake 0.5s ease infinite;
         }
@@ -284,6 +327,19 @@
         <div class="subtitle">Päivämäärä paljastuu...</div>
         
         <div class="emoji">🔥🍻🧖‍♂️</div>
+
+        <!-- Biisi-nappi -->
+        <div class="music-teaser">
+            <button onclick="toggleMusic()" id="musicButton" class="music-button">
+                🎵 MEILLÄ TORNIOSSA TEASER 🎵
+            </button>
+            <div id="musicPlayer" class="music-player" style="display: none;">
+                <audio id="audioPlayer" controls style="width: 100%; margin-top: 15px;">
+                    <source src="tornio-song.mp3" type="audio/mpeg">
+                    Selaimesi ei tue äänentoistoa.
+                </audio>
+            </div>
+        </div>
 
         <div class="countdown" id="countdown">
             <div class="time-unit">
@@ -438,6 +494,23 @@
 
         updateCountdown();
         setInterval(updateCountdown, 1000);
+
+        // Biisisoittimen toggle
+        function toggleMusic() {
+            const player = document.getElementById('musicPlayer');
+            const button = document.getElementById('musicButton');
+            const audio = document.getElementById('audioPlayer');
+            
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
+                button.textContent = '🎵 SULJE SOITIN 🎵';
+                audio.play();
+            } else {
+                player.style.display = 'none';
+                button.textContent = '🎵 MEILLÄ TORNIOSSA TEASER 🎵';
+                audio.pause();
+            }
+        }
     </script>
 </body>
 </html>
