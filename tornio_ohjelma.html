@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MEILLÄ TORNIOSSA 2026 - OHJELMA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        .flame {
+            position: absolute;
+            bottom: 0;
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 60px solid #ff6b00;
+            opacity: 0.6;
+            animation: flicker 2s infinite;
+            filter: blur(5px);
+        }
+
+        @keyframes flicker {
+            0%, 100% { 
+                transform: translateY(0) scaleY(1);
+                opacity: 0.6;
+            }
+            50% { 
+                transform: translateY(-20px) scaleY(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+            animation: pulse 2s ease-in-out infinite;
+            letter-spacing: 3px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Sauna-osuus */
+        .sauna-section {
+            position: relative;
+            background: rgba(255, 107, 107, 0.2);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 107, 107, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.4);
+            overflow: hidden;
+        }
+
+        .sauna-title {
+            font-size: 2.5em;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+        }
+
+        .sauna-emoji {
+            text-align: center;
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .sauna-info {
+            font-size: 1.3em;
+            line-height: 1.9;
+            margin: 25px 0;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .sauna-details {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+        }
+
+        .sauna-details h3 {
+            color: #ffd700;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .sauna-details p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .sauna-link {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .sauna-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .link-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Interaktiivinen kiuas */
+        .interactive-kiuas {
+            text-align: center;
+            margin: 40px 0;
+            padding-top: 60px;
+        }
+
+        .kiuas-container {
+            position: relative;
+            margin: 30px auto;
+            width: 280px;
+            height: 350px;
+        }
+
+        .kiuas {
+            width: 280px;
+            height: 350px;
+            background-image: url('kiuas.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+        }
+
+        .kiuas:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+        }
+
+        .kiuas:active {
+            transform: scale(0.95);
+        }
+
+        .steam {
+            position: absolute;
+            font-size: 3em;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Keskimmäinen höyry */
+        #steamSauna1 {
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Vasen höyry */
+        #steamSauna2 {
+            bottom: 90%;
+            left: 20%;
+            transform: translateX(-50%);
+        }
+
+        /* Oikea höyry */
+        #steamSauna3 {
+            bottom: 90%;
+            left: 80%;
+            transform: translateX(-50%);
+        }
+
+        /* Vasen ylempi */
+        #steamSauna4 {
+            bottom: 95%;
+            left: 35%;
+            transform: translateX(-50%);
+        }
+
+        /* Oikea ylempi */
+        #steamSauna5 {
+            bottom: 95%;
+            left: 65%;
+            transform: translateX(-50%);
+        }
+
+        .steam.animate {
+            animation: steamRise 1s ease-out;
+        }
+
+        @keyframes steamRise {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-100px) scale(1.5);
+            }
+        }
+
+        .complaint-text {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 107, 107, 0.9);
+            padding: 15px 25px;
+            border-radius: 15px;
+            font-size: 1.1em;
+            color: white;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            animation: complaintFade 2.5s ease-out forwards;
+            z-index: 100;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes complaintFade {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(10px);
+            }
+            20% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            80% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px);
+            }
+        }
+
+        .kiuas-instruction {
+            font-size: 1.1em;
+            color: #ffd700;
+            margin-top: 20px;
+        }
+
+        /* Ystävänpäivä-osuus */
+        .friends-section {
+            position: relative;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(138, 43, 226, 0.3));
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 20, 147, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(255, 20, 147, 0.4);
+            overflow: hidden;
+        }
+
+        .friends-title {
+            font-size: 2.5em;
+            color: #ff69b4;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+        }
+
+        .friends-emoji {
+            text-align: center;
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .friends-info {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .countdown-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 1.5em;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .time-unit {
+            background: rgba(255, 20, 147, 0.2);
+            border: 2px solid rgba(255, 105, 180, 0.6);
+            border-radius: 15px;
+            padding: 20px 15px;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .time-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #ff69b4;
+            text-shadow: 0 0 15px rgba(255, 105, 180, 0.8);
+        }
+
+        .time-label {
+            font-size: 0.9em;
+            color: #ddd;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Konfetti */
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff69b4;
+            opacity: 0;
+            animation: confettiFall 3s linear infinite;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                opacity: 1;
+                transform: translateY(-100px) rotate(0deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        /* Aikataulu-osuus */
+        .info-section {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 107, 107, 0.3);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3);
+        }
+
+        .info-title {
+            font-size: 1.8em;
+            color: #ffd700;
+            margin-bottom: 20px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .info-item {
+            font-size: 1.3em;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #ff6b6b;
+        }
+
+        .info-item strong {
+            color: #ffd700;
+            display: inline-block;
+            min-width: 120px;
+        }
+
+        /* Musiikki */
+        .music-section {
+            margin: 40px 0;
+            padding: 25px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            text-align: center;
+        }
+
+        .music-title {
+            font-size: 1.3em;
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+
+        .music-button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            color: #1a1a2e;
+            border: 3px solid #ffd700;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .music-button:hover {
+            background: linear-gradient(135deg, #ffed4e, #ffd700);
+            transform: translateY(-3px);
+        }
+
+        .music-player {
+            margin-top: 15px;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2em; }
+            .sauna-title, .friends-title { font-size: 1.8em; }
+            .kiuas { 
+                width: 220px; 
+                height: 275px; 
+            }
+            .kiuas-container {
+                width: 220px;
+                height: 275px;
+            }
+            .time-unit { min-width: 80px; padding: 15px 10px; }
+            .time-value { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Liekkirevontulet -->
+    <div class="flame" style="left: 5%; animation-delay: 0s;"></div>
+    <div class="flame" style="left: 15%; animation-delay: 0.3s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 25%; animation-delay: 0.6s;"></div>
+    <div class="flame" style="left: 35%; animation-delay: 0.2s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 45%; animation-delay: 0.8s;"></div>
+    <div class="flame" style="left: 55%; animation-delay: 0.4s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 65%; animation-delay: 0.1s;"></div>
+    <div class="flame" style="left: 75%; animation-delay: 0.7s; border-bottom-color: #ff8e00;"></div>
+    <div class="flame" style="left: 85%; animation-delay: 0.5s;"></div>
+    <div class="flame" style="left: 95%; animation-delay: 0.9s; border-bottom-color: #ff8e00;"></div>
+
+    <div class="container">
+        <h1>MEILLÄ TORNIOSSA 2026</h1>
+
+        <!-- SAUNA-OSUUS -->
+        <div class="sauna-section">
+            <div class="sauna-title">🧖‍♂️ Ota hantyyki myöten ja tule sauhnaan! 🔥</div>
+            
+            <div class="sauna-emoji">🧖‍♂️ 💨 🔥</div>
+
+            <div class="sauna-details">
+                <p style="font-style: italic; font-size: 1.1em;">
+                    Mennhään torstaina 17.7. kello kolome päivällä Kukkolanforsenin sauna-alueele 
+                    rentouttumhaan ennen illan rientoja. Sielä saa istuo rauhassa ja nauttia 
+                    oikein kunnon löylystä, ja kun löyly alkaa purra liian kovvaa, niin sitte 
+                    vaan ulos viilentymhään kosken rannale. Mukava paikka se on, ja kyllähä siitä 
+                    pitäs tulla hyvä fiilis ennenko lähetähän iltaa kohti! 🧖‍♂️
+                </p>
+            </div>
+
+            <div class="sauna-details">
+                <h3>🔥 Saunavaihtoehdot</h3>
+                <p><strong>RÖK-Savusauna</strong> - Ruotsin suurin savusauna! 5000 kg kiviä ja tilaa 65 hengelle. 
+                Savusauna on yksi vanhimmista saunamuodoista - ei savupiippua, vain pehmeää ja pyöreää löylyä.</p>
+                
+                <p><strong>BYA Kylä-sauna</strong> - Käsin veistetty hirsisauna, tilaa 60 hengelle. 
+                Puulämmitteinen Ruotsin suurin kiuas yli 2300 kg kivillä!</p>
+                
+                <p><strong>VIP-sauna</strong> - Kahdeksankulmainen sauna venäläisestä kuivasta männystä. 
+                Takkahuoneessa viihtyisä takka ja mukavat nojatuolit rentoutumiseen.</p>
+
+                <p><strong>Kasvihuonesauna</strong> - Ainutlaatuinen saunakokemus kasvihuoneessa! 
+                Vihreys ympärillä ja koskinäkymä luovat rauhallisen tunnelman.</p>
+                
+                <p><strong>Palju</strong> - Puulämmitteiset paljut koskinäköalalla. Virkistäydy Kukkolankosken 
+                vedessä tai istu paljussa ihaillen upeaa koskimaisemaa!</p>
+            </div>
+
+            <div class="interactive-kiuas">
+                <div class="kiuas-container">
+                    <div class="kiuas" id="kiuasSauna">
+                        <div class="steam" id="steamSauna1">💨</div>
+                        <div class="steam" id="steamSauna2">💨</div>
+                        <div class="steam" id="steamSauna3">💨</div>
+                        <div class="steam" id="steamSauna4">💨</div>
+                        <div class="steam" id="steamSauna5">💨</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="link-container">
+                <a href="https://www.kukkolaforsen.se/fi/aktiviteter/ota-hantyyki-myoten-ja-tule-sauhnaan/" 
+                   target="_blank" 
+                   class="sauna-link">
+                    📍 Lisää tietoa sauna-tapahtumasta
+                </a>
+            </div>
+        </div>
+
+        <!-- YSTÄVÄNPÄIVÄ-OSUUS -->
+        <div class="friends-section">
+            <div class="friends-title">💕 Juhlitaan ystävien kesken <3</div>
+            
+            <div class="friends-emoji">🎉 👯‍♂️ 🎊</div>
+
+            <div class="friends-info">
+                Jatkuu pian... ✨
+            </div>
+
+            <div class="countdown-container">
+                <div class="countdown-title">⏰ Seuraava paljastus</div>
+                <div class="countdown" id="friendsCountdown">
+                    <div class="time-unit">
+                        <div class="time-value" id="friendsDays">00</div>
+                        <div class="time-label">Päivää</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="friendsHours">00</div>
+                        <div class="time-label">Tuntia</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="friendsMinutes">00</div>
+                        <div class="time-label">Minuuttia</div>
+                    </div>
+                    <div class="time-unit">
+                        <div class="time-value" id="friendsSeconds">00</div>
+                        <div class="time-label">Sekuntia</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px; font-size: 1.2em; color: #ff69b4;">
+                    🎭 Lisää ohjelmaa paljastuu pian! 🎭
+                </div>
+            </div>
+
+            <!-- Konfetteja -->
+            <div class="confetti" style="left: 10%; animation-delay: 0s; background: #ff69b4;"></div>
+            <div class="confetti" style="left: 20%; animation-delay: 0.5s; background: #8a2be2;"></div>
+            <div class="confetti" style="left: 30%; animation-delay: 1s; background: #ff1493;"></div>
+            <div class="confetti" style="left: 40%; animation-delay: 1.5s; background: #ff69b4;"></div>
+            <div class="confetti" style="left: 50%; animation-delay: 2s; background: #8a2be2;"></div>
+            <div class="confetti" style="left: 60%; animation-delay: 0.3s; background: #ff1493;"></div>
+            <div class="confetti" style="left: 70%; animation-delay: 0.8s; background: #ff69b4;"></div>
+            <div class="confetti" style="left: 80%; animation-delay: 1.3s; background: #8a2be2;"></div>
+            <div class="confetti" style="left: 90%; animation-delay: 1.8s; background: #ff1493;"></div>
+        </div>
+
+        <!-- AIKATAULU -->
+        <div class="info-section">
+            <div class="info-title">📅 Aikataulu</div>
+            <div class="info-item">
+                <strong>Lähtö:</strong> 16.7.2026 klo 00:26 (yöjuna)
+            </div>
+            <div class="info-item">
+                <strong>To 17.7.:</strong> Sauna Kukkolaforsenissa klo 15-18
+            </div>
+            <div class="info-item">
+                <strong>Paluu:</strong> 19.7.2026 klo ~16:00 (Tampere)
+            </div>
+            <div class="info-item">
+                <strong>Kesto:</strong> 3 yötä, 4 päivää
+            </div>
+        </div>
+
+        <!-- Musiikki -->
+        <div class="music-section">
+            <div class="music-title">🎵 MEILLÄ TORNIOSSA - Teaser biisi</div>
+            <div class="music-teaser">
+                <button onclick="toggleMusic()" id="musicButton" class="music-button">
+                    🎵 KUUNTELE BIISI 🎵
+                </button>
+                <div id="musicPlayer" class="music-player" style="display: none;">
+                    <audio id="audioPlayer" controls>
+                        <source src="tornio-song.mp3" type="audio/mpeg">
+                        Selaimesi ei tue äänentoistoa.
+                    </audio>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let audioContext;
+        let saunaClickCount = 0;
+
+        // Valitustekstit - normaalit
+        const complaints = [
+            "Ai saatana ku on kuuma! 🥵",
+            "Huh huh, polttelee! 🔥",
+            "Ei jumalauta! 😰",
+            "Tää on liikaa! 💦",
+            "Perkele ku kirveltää! 🔥",
+            "Hitto vie, kuuma! 😅",
+            "Ai että, nyt lämmitti! 🌡️",
+            "Ei helevetti! 🥵",
+            "Tästä saa kyllä löylyä! 💨",
+            "Nyt on kunnon löylyt! 🔥",
+            "Auts, polttelee nenässä! 👃",
+            "Kohta pitää mennä ulos! 🚪",
+            "Ei se ole poka mikhää! 🔥"
+        ];
+
+        // Erityinen paljastus (5+ klikkauksen jälkeen)
+        const secretComplaints = [
+            "Oltiinko me menossa huomenna vai lauantaina Twinkkareihin? 🤔"
+        ];
+
+        // Alusta audio context
+        document.body.addEventListener('click', function() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }, { once: true });
+
+        // Realistinen löyly-sihinä
+        function playSizzle() {
+            if (!audioContext) return;
+            
+            // Luodaan white noise buffer
+            const bufferSize = audioContext.sampleRate * 1.2;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // Täytetään bufferiin white noisea
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            
+            const noise = audioContext.createBufferSource();
+            noise.buffer = buffer;
+            
+            // Matala-alue suodatin (löyly on syvä ja pehmeä)
+            const lowpass = audioContext.createBiquadFilter();
+            lowpass.type = 'lowpass';
+            lowpass.frequency.value = 1200; // Matalampi taajuus
+            lowpass.Q.value = 1;
+            
+            // Lisätään hieman kaikua
+            const gainNode = audioContext.createGain();
+            gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.4, audioContext.currentTime + 0.1); // Nopea nousu
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.2); // Pitkä häipyminen
+            
+            // Kytketään yhteen
+            noise.connect(lowpass);
+            lowpass.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            noise.start(audioContext.currentTime);
+            noise.stop(audioContext.currentTime + 1.2);
+        }
+
+        // Kiuas-klikkaus
+        document.getElementById('kiuasSauna').addEventListener('click', function() {
+            saunaClickCount++;
+            
+            // Animoi kaikki höyryt
+            for (let i = 1; i <= 5; i++) {
+                const steam = document.getElementById('steamSauna' + i);
+                steam.classList.remove('animate');
+                void steam.offsetWidth; // Trigger reflow
+                
+                // Lisää pieni viive jokaiselle höyrylle
+                setTimeout(() => {
+                    steam.classList.add('animate');
+                }, i * 50);
+            }
+            
+            // Soita sihinä
+            playSizzle();
+            
+            // Näytä valitusteksti
+            showComplaint();
+        });
+
+        // Näytä satunnainen valitus (vain joka 3. klikkauksella)
+        function showComplaint() {
+            // Näytä teksti vain joka 3. klikkauksella
+            if (saunaClickCount % 3 !== 0) {
+                return;
+            }
+            
+            const container = document.getElementById('kiuasSauna').parentElement;
+            
+            // Poista vanha teksti jos on
+            const oldComplaint = container.querySelector('.complaint-text');
+            if (oldComplaint) {
+                oldComplaint.remove();
+            }
+            
+            // Valitse teksti (5+ klikkauksella mahdollisuus paljastukseen)
+            let text;
+            if (saunaClickCount >= 6 && Math.random() < 0.3) {
+                // 30% mahdollisuus paljastukseen kun 6+ klikkausta (eli 2. teksti)
+                text = secretComplaints[0];
+            } else {
+                text = complaints[Math.floor(Math.random() * complaints.length)];
+            }
+            
+            // Luo uusi teksti
+            const complaint = document.createElement('div');
+            complaint.className = 'complaint-text';
+            complaint.textContent = text;
+            container.appendChild(complaint);
+            
+            // Poista automaattisesti animaation jälkeen
+            setTimeout(() => {
+                complaint.remove();
+            }, 2500);
+        }
+
+        // Laskuri seuraavaan paljastukseen (2 viikkoa eteenpäin)
+        const nextReveal = new Date('2026-02-28T22:00:00').getTime();
+
+        function updateFriendsCountdown() {
+            const now = new Date().getTime();
+            const distance = nextReveal - now;
+
+            if (distance < 0) {
+                document.getElementById('friendsCountdown').innerHTML = 
+                    '<div style="font-size: 2em; color: #ff69b4;">🎉 UUTTA SISÄLTÖÄ TULOSSA PIAN! 🎉</div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('friendsDays').textContent = String(days).padStart(2, '0');
+            document.getElementById('friendsHours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('friendsMinutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('friendsSeconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateFriendsCountdown();
+        setInterval(updateFriendsCountdown, 1000);
+
+        // Biisisoittimen toggle
+        function toggleMusic() {
+            const player = document.getElementById('musicPlayer');
+            const button = document.getElementById('musicButton');
+            const audio = document.getElementById('audioPlayer');
+            
+            if (player.style.display === 'none') {
+                player.style.display = 'block';
+                button.textContent = '🎵 SULJE SOITIN 🎵';
+                audio.play();
+            } else {
+                player.style.display = 'none';
+                button.textContent = '🎵 KUUNTELE BIISI 🎵';
+                audio.pause();
+            }
+        }
+    </script>
+</body>
+</html>

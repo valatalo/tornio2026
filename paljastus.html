@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MEILLÄ TORNIOSSA 2026 - PALJASTUS</title>
+    <title>MEILLÄ TORNIOSSA 2026</title>
     <style>
         * {
             margin: 0;
@@ -21,12 +21,6 @@
             padding: 20px;
         }
 
-        /* Toistuva vihjeteksti taustalla - VAIN ohjelma-laatikossa */
-        .hints-background {
-            /* Tyylit määritelty .program-teaser .hints-background ja .registration .hints-background kohdassa */
-        }
-
-        /* Liekkirevontulet */
         .flame {
             position: absolute;
             bottom: 0;
@@ -94,25 +88,6 @@
             padding: 30px;
             margin: 30px 0;
             box-shadow: 0 10px 40px rgba(255, 107, 107, 0.3);
-            overflow: hidden;
-        }
-
-        .info-section .hints-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.04;
-            font-size: 0.6em;
-            font-weight: normal;
-            color: #ffffff;
-            z-index: 1;
-            overflow: hidden;
-            word-wrap: break-word;
-            line-height: 1.6;
-            padding: 15px;
         }
 
         .info-section > * {
@@ -154,29 +129,9 @@
             background: rgba(255, 215, 0, 0.1);
             border-radius: 15px;
             border: 2px solid rgba(255, 215, 0, 0.4);
-            overflow: hidden;
         }
 
-        .program-teaser .hints-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.04;
-            font-size: 0.6em;
-            font-weight: normal;
-            color: #ffffff;
-            z-index: 1;
-            overflow: hidden;
-            word-wrap: break-word;
-            line-height: 1.6;
-            padding: 15px;
-        }
-
-        .program-teaser > div:not(.hints-background),
-        .program-teaser > .countdown-small {
+        .program-teaser > * {
             position: relative;
             z-index: 10;
         }
@@ -212,6 +167,109 @@
             text-transform: uppercase;
         }
 
+        /* Löylypeli */
+        .loyly-game {
+            display: none;
+            position: relative;
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 107, 107, 0.2);
+            border-radius: 20px;
+            border: 3px solid #ff6b6b;
+            margin: 30px 0;
+        }
+
+        .loyly-game.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .loyly-title {
+            font-size: 2em;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .loyly-counter {
+            font-size: 3em;
+            color: #ff6b6b;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.8);
+        }
+
+        .kiuas-container {
+            position: relative;
+            margin: 30px auto;
+            width: 200px;
+            height: 200px;
+        }
+
+        .kiuas {
+            width: 200px;
+            height: 200px;
+            background-image: url('kiuas.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .kiuas:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.5);
+        }
+
+        .kiuas:active {
+            transform: scale(0.95);
+        }
+
+        .steam {
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3em;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .steam.animate {
+            animation: steamRise 1s ease-out;
+        }
+
+        @keyframes steamRise {
+            0% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-100px) scale(1.5);
+            }
+        }
+
+        .loyly-instruction {
+            font-size: 1.2em;
+            color: #ffd700;
+            margin: 20px 0;
+        }
+
+        .loyly-feedback {
+            font-size: 1.1em;
+            color: #ff6b6b;
+            margin-top: 15px;
+            min-height: 30px;
+            font-style: italic;
+        }
+
         .registration {
             position: relative;
             background: linear-gradient(135deg, rgba(255, 107, 107, 0.2), rgba(255, 215, 0, 0.2));
@@ -220,25 +278,6 @@
             padding: 30px;
             margin: 40px 0;
             text-align: center;
-            overflow: hidden;
-        }
-
-        .registration .hints-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            opacity: 0.04;
-            font-size: 0.6em;
-            font-weight: normal;
-            color: #ffffff;
-            z-index: 1;
-            overflow: hidden;
-            word-wrap: break-word;
-            line-height: 1.6;
-            padding: 15px;
         }
 
         .registration > * {
@@ -275,11 +314,6 @@
             font-size: 1.3em;
             color: #ffd700;
             margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .music-teaser {
-            margin: 20px 0;
         }
 
         .music-button {
@@ -292,23 +326,11 @@
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s ease;
-            animation: musicPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes musicPulse {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            }
-            50% { 
-                transform: scale(1.05);
-                box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
-            }
         }
 
         .music-button:hover {
             background: linear-gradient(135deg, #ffed4e, #ffd700);
-            transform: translateY(-3px) scale(1.05);
+            transform: translateY(-3px);
         }
 
         .music-player {
@@ -317,32 +339,17 @@
             background: rgba(255, 215, 0, 0.1);
             border-radius: 10px;
             border: 2px solid rgba(255, 215, 0, 0.3);
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         audio {
             width: 100%;
-            filter: sepia(20%) saturate(70%) hue-rotate(5deg);
         }
 
         @media (max-width: 600px) {
-            h1 {
-                font-size: 2em;
-            }
-            .reveal-badge {
-                font-size: 1.5em;
-            }
-            .info-item {
-                font-size: 1.1em;
-            }
-            .time-unit-small {
-                min-width: 70px;
-            }
+            h1 { font-size: 2em; }
+            .reveal-badge { font-size: 1.5em; }
+            .info-item { font-size: 1.1em; }
+            .kiuas { width: 150px; height: 150px; }
         }
     </style>
 </head>
@@ -365,9 +372,6 @@
 
         <!-- Reissutiedot -->
         <div class="info-section">
-            <div class="hints-background">
-                ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI ASEMAMESTARI
-            </div>
             <div class="info-title">📅 Aikataulu</div>
             <div class="info-item">
                 <strong>Lähtö:</strong> 16.7.2026 klo 00:26 (yöjuna)
@@ -380,12 +384,8 @@
             </div>
         </div>
 
-        <!-- Ohjelma teaser -->
-        <div class="program-teaser">
-            <div class="hints-background">
-                14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS 14M PUDOTUS KATTILA VAPAUS
-            </div>
-            
+        <!-- Ohjelma teaser TAI Löylypeli -->
+        <div class="program-teaser" id="programSection">
             <div style="font-size: 1.8em; margin-bottom: 15px;">
                 🔮 ENSIMMÄISET OHJELMA PALJASTUKSET 🔮
             </div>
@@ -413,16 +413,25 @@
             </div>
         </div>
 
+        <!-- Löylypeli (piilotettu aluksi) -->
+        <div class="loyly-game" id="loylyGame">
+            <div class="loyly-title">🧖‍♂️ HEITÄ LÖYLYÄ! 🔥</div>
+            <div class="loyly-instruction">Heitä löylyä kiukaaseen päästäksesi näkemään ohjelmaa!</div>
+            <div class="kiuas-container">
+                <div class="kiuas" id="kiuas">
+                    <div class="steam" id="steam">💨</div>
+                </div>
+            </div>
+            <div class="loyly-feedback" id="loylyFeedback"></div>
+        </div>
+
         <!-- Ilmoittautuminen -->
         <div class="registration">
-            <div class="hints-background">
-                UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI UMPITUNNELI PIKKU BERLIINI PUNAINEN PAROONI
-            </div>
             <h2>📝 ILMOITTAUTUMINEN</h2>
             <div class="registration-details">
                 Nähdään asemamestarissa!<br><br>
                 Ilmoita Vesalle:<br>
-                <strong>Lähetkö mukaan?</strong><br><br>
+                <strong>Lähdetkö mukaan?</strong><br><br>
                 <strong>• Paitakoko</strong><br>
                 <strong>• Kengänkoko</strong><br>
                 <strong>• Kätisyys</strong> (vasen/oikea)<br>
@@ -449,17 +458,93 @@
     </div>
 
     <script>
-        // Laskuri 14.2.2026 klo 22:00
         const programRevealDate = new Date('2026-02-14T22:00:00').getTime();
+        let loylyCount = 0;
+        let audioContext;
+
+        // Alusta audio context käyttäjän interaktion jälkeen
+        document.body.addEventListener('click', function() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }, { once: true });
+
+        // Realistinen löyly-sihinä
+        function playSizzle() {
+            if (!audioContext) return;
+            
+            // Luodaan white noise buffer
+            const bufferSize = audioContext.sampleRate * 1.2;
+            const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            // Täytetään bufferiin white noisea
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            
+            const noise = audioContext.createBufferSource();
+            noise.buffer = buffer;
+            
+            // Matala-alue suodatin (löyly on syvä ja pehmeä)
+            const lowpass = audioContext.createBiquadFilter();
+            lowpass.type = 'lowpass';
+            lowpass.frequency.value = 1200; // Matalampi taajuus
+            lowpass.Q.value = 1;
+            
+            // Lisätään hieman kaikua
+            const gainNode = audioContext.createGain();
+            gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.4, audioContext.currentTime + 0.1); // Nopea nousu
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.2); // Pitkä häipyminen
+            
+            // Kytketään yhteen
+            noise.connect(lowpass);
+            lowpass.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            noise.start(audioContext.currentTime);
+            noise.stop(audioContext.currentTime + 1.2);
+        }
+
+        // Kiuas-klikkaus
+        document.getElementById('kiuas').addEventListener('click', function() {
+            if (loylyCount >= 10) return;
+            
+            loylyCount++;
+            
+            // Näytä kannustava teksti
+            const feedback = document.getElementById('loylyFeedback');
+            if (loylyCount < 10) {
+                feedback.textContent = 'Ei tunnu vielä missään, antaa tulla lissää! 🔥';
+            }
+            
+            // Höyryn animaatio
+            const steam = document.getElementById('steam');
+            steam.classList.remove('animate');
+            void steam.offsetWidth; // Trigger reflow
+            steam.classList.add('animate');
+            
+            // Soita sihinä
+            playSizzle();
+            
+            // Jos 10 heittoa tehty, siirry ohjelma-sivulle
+            if (loylyCount >= 10) {
+                feedback.textContent = 'Nyt se alkaa tuntua! Mennään sisään! 🎉';
+                setTimeout(() => {
+                    window.location.href = 'ohjelma.html';
+                }, 1500);
+            }
+        });
 
         function updateProgramCountdown() {
             const now = new Date().getTime();
             const distance = programRevealDate - now;
 
             if (distance < 0) {
-                document.getElementById('programCountdown').innerHTML = 
-                    '<div class="time-unit-small"><div class="time-value-small">🎉</div></div>' +
-                    '<div style="font-size: 1.5em; margin-top: 20px;">OHJELMAA PALJASTETTU!</div>';
+                // Näytä löylypeli
+                document.getElementById('programSection').style.display = 'none';
+                document.getElementById('loylyGame').classList.add('active');
                 return;
             }
 
@@ -477,7 +562,6 @@
         updateProgramCountdown();
         setInterval(updateProgramCountdown, 1000);
 
-        // Biisisoittimen toggle
         function toggleMusic() {
             const player = document.getElementById('musicPlayer');
             const button = document.getElementById('musicButton');
