@@ -187,35 +187,30 @@
             pointer-events: none;
         }
 
-        /* Keskimmäinen höyry */
         #steamSauna1 {
             bottom: 100%;
             left: 50%;
             transform: translateX(-50%);
         }
 
-        /* Vasen höyry */
         #steamSauna2 {
             bottom: 90%;
             left: 20%;
             transform: translateX(-50%);
         }
 
-        /* Oikea höyry */
         #steamSauna3 {
             bottom: 90%;
             left: 80%;
             transform: translateX(-50%);
         }
 
-        /* Vasen ylempi */
         #steamSauna4 {
             bottom: 95%;
             left: 35%;
             transform: translateX(-50%);
         }
 
-        /* Oikea ylempi */
         #steamSauna5 {
             bottom: 95%;
             left: 65%;
@@ -314,6 +309,138 @@
             text-align: center;
         }
 
+        /* Palapeli */
+        .puzzle-game {
+            display: none;
+            margin: 40px 0;
+        }
+
+        .puzzle-game.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .puzzle-title {
+            font-size: 2em;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .puzzle-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
+            max-width: 450px;
+            margin: 30px auto;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4px;
+            border-radius: 10px;
+        }
+
+        .puzzle-piece {
+            aspect-ratio: 1;
+            background-size: 300%;
+            background-position: center;
+            cursor: pointer;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .puzzle-piece:hover {
+            transform: scale(1.05);
+            border-color: #ffd700;
+            z-index: 10;
+        }
+
+        .puzzle-piece.correct {
+            border-color: #00ff00;
+            cursor: default;
+        }
+
+        .puzzle-piece.correct:hover {
+            transform: none;
+        }
+
+        .puzzle-instruction {
+            text-align: center;
+            font-size: 1.2em;
+            color: #ffd700;
+            margin: 20px 0;
+        }
+
+        .pub-reveal {
+            display: none;
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 140, 0, 0.3), rgba(255, 215, 0, 0.3));
+            border: 3px solid #ffa500;
+            border-radius: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .pub-reveal.active {
+            display: block;
+        }
+
+        .pub-reveal h2 {
+            font-size: 2.5em;
+            color: #ffd700;
+            margin-bottom: 20px;
+        }
+
+        .pub-info {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .pub-map {
+            max-width: 600px;
+            width: 100%;
+            margin: 30px auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Ruotsi-teema */
+        .sweden-section {
+            position: relative;
+            background: linear-gradient(135deg, rgba(0, 106, 167, 0.3), rgba(254, 204, 0, 0.3));
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(0, 106, 167, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0, 106, 167, 0.4);
+        }
+
+        .sweden-title {
+            font-size: 2.5em;
+            color: #fecc00;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(0, 106, 167, 0.8);
+        }
+
+        .sweden-emoji {
+            text-align: center;
+            font-size: 4em;
+            margin: 20px 0;
+        }
+
+        .sweden-hint {
+            font-size: 1.3em;
+            line-height: 1.8;
+            margin: 20px 0;
+            text-align: center;
+            font-style: italic;
+            color: #fecc00;
+        }
+
         .countdown-container {
             background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
@@ -381,7 +508,7 @@
             }
         }
 
-        /* Aikataulu-osuus */
+        /* Aikataulu */
         .info-section {
             position: relative;
             background: rgba(255, 255, 255, 0.1);
@@ -461,6 +588,11 @@
 
         audio {
             width: 100%;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 600px) {
@@ -550,17 +682,17 @@
             </div>
         </div>
 
-        <!-- YSTÄVÄNPÄIVÄ-OSUUS -->
+        <!-- YSTÄVÄNPÄIVÄ-OSUUS / PALAPELI -->
         <div class="friends-section">
-            <div class="friends-title">💕 Juhlitaan ystävien kesken <3</div>
+            <div class="friends-title" id="friendsTitle">💕 Juhlitaan ystävien kesken &lt;3</div>
             
-            <div class="friends-emoji">🎉 👯‍♂️ 🎊</div>
+            <div class="friends-emoji" id="friendsEmoji">🎉 👯‍♂️ 🎊</div>
 
-            <div class="friends-info">
+            <div class="friends-info" id="friendsInfo">
                 Jatkuu pian... ✨
             </div>
 
-            <div class="countdown-container">
+            <div class="countdown-container" id="friendsCountdownContainer">
                 <div class="countdown-title">⏰ Seuraava paljastus</div>
                 <div class="countdown" id="friendsCountdown">
                     <div class="time-unit">
@@ -583,6 +715,31 @@
                 <div style="margin-top: 20px; font-size: 1.2em; color: #ff69b4;">
                     🎭 Lisää ohjelmaa paljastuu pian! 🎭
                 </div>
+            </div>
+
+            <!-- Palapeli (piilotettu) -->
+            <div class="puzzle-game" id="puzzleGame">
+
+                <div class="puzzle-instruction">Klikkaa paloja vaihtaaksesi niiden paikkaa</div>
+                <div class="puzzle-container" id="puzzleContainer"></div>
+            </div>
+
+            <!-- Paljastus (piilotettu) -->
+            <div class="pub-reveal" id="pubReveal">
+                <h2>🍻 PUBIKIERROS! 🍻</h2>
+                <div class="pub-info">
+                    <strong>Perjantai 17.7.2026</strong><br>
+                    Alkaa klo 14:00<br><br>
+                    📍 <a href="https://www.tornio.fi/ajankohtaista/oispa-kaljaa-uusi-nayttely-tornionlaakson-museossa-avaa-oluen-pitkaa-historiaa-suomessa-ja-torniossa/" 
+                         target="_blank" 
+                         style="color: #ffd700; text-decoration: none; border-bottom: 2px solid #ffd700;">
+                        <strong>Oispa kaljaa -näyttely</strong>
+                    </a><br>
+                    <span style="font-size: 0.9em; font-style: italic;">
+                        Tornionlaakson museossa - Oluen historiaa ja olutperinnettä Tornionjokilaaksosta
+                    </span>
+                </div>
+                <img src="pubikierros-kartta.png" alt="Pubikierros kartta" class="pub-map" id="pubMap">
             </div>
 
             <!-- Konfetteja -->
@@ -629,13 +786,43 @@
                 </div>
             </div>
         </div>
+
+        <!-- RUOTSI-TEEMA SEURAAVA PALJASTUS -->
+        <div class="sweden-section" id="swedenSection" style="display: none;">
+            <div class="sweden-title">🇸🇪 Seuraava paljastus 🇸🇪</div>
+            
+            <div class="sweden-emoji">👑 🎭 🍽️</div>
+
+
+
+            <div class="countdown-container">
+                <div class="countdown-title" style="color: #fecc00;">⏰ Seuraava paljastus</div>
+                <div class="countdown" id="swedenCountdown">
+                    <div class="time-unit" style="background: rgba(0, 106, 167, 0.2); border-color: rgba(254, 204, 0, 0.6);">
+                        <div class="time-value" style="color: #fecc00;" id="swedenDays">00</div>
+                        <div class="time-label">Päivää</div>
+                    </div>
+                    <div class="time-unit" style="background: rgba(0, 106, 167, 0.2); border-color: rgba(254, 204, 0, 0.6);">
+                        <div class="time-value" style="color: #fecc00;" id="swedenHours">00</div>
+                        <div class="time-label">Tuntia</div>
+                    </div>
+                    <div class="time-unit" style="background: rgba(0, 106, 167, 0.2); border-color: rgba(254, 204, 0, 0.6);">
+                        <div class="time-value" style="color: #fecc00;" id="swedenMinutes">00</div>
+                        <div class="time-label">Minuuttia</div>
+                    </div>
+                    <div class="time-unit" style="background: rgba(0, 106, 167, 0.2); border-color: rgba(254, 204, 0, 0.6);">
+                        <div class="time-value" style="color: #fecc00;" id="swedenSeconds">00</div>
+                        <div class="time-label">Sekuntia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
         let audioContext;
         let saunaClickCount = 0;
 
-        // Valitustekstit - normaalit
         const complaints = [
             "Ai saatana ku on kuuma! 🥵",
             "Huh huh, polttelee! 🔥",
@@ -652,28 +839,23 @@
             "Ei se ole poka mikhää! 🔥"
         ];
 
-        // Erityinen paljastus (5+ klikkauksen jälkeen)
         const secretComplaints = [
             "Oltiinko me menossa huomenna vai lauantaina Twinkkareihin? 🤔"
         ];
 
-        // Alusta audio context
         document.body.addEventListener('click', function() {
             if (!audioContext) {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
             }
         }, { once: true });
 
-        // Realistinen löyly-sihinä
         function playSizzle() {
             if (!audioContext) return;
             
-            // Luodaan white noise buffer
             const bufferSize = audioContext.sampleRate * 1.2;
             const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
             const data = buffer.getChannelData(0);
             
-            // Täytetään bufferiin white noisea
             for (let i = 0; i < bufferSize; i++) {
                 data[i] = Math.random() * 2 - 1;
             }
@@ -681,19 +863,16 @@
             const noise = audioContext.createBufferSource();
             noise.buffer = buffer;
             
-            // Matala-alue suodatin (löyly on syvä ja pehmeä)
             const lowpass = audioContext.createBiquadFilter();
             lowpass.type = 'lowpass';
-            lowpass.frequency.value = 1200; // Matalampi taajuus
+            lowpass.frequency.value = 1200;
             lowpass.Q.value = 1;
             
-            // Lisätään hieman kaikua
             const gainNode = audioContext.createGain();
             gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.4, audioContext.currentTime + 0.1); // Nopea nousu
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.2); // Pitkä häipyminen
+            gainNode.gain.exponentialRampToValueAtTime(0.4, audioContext.currentTime + 0.1);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1.2);
             
-            // Kytketään yhteen
             noise.connect(lowpass);
             lowpass.connect(gainNode);
             gainNode.connect(audioContext.destination);
@@ -702,75 +881,66 @@
             noise.stop(audioContext.currentTime + 1.2);
         }
 
-        // Kiuas-klikkaus
         document.getElementById('kiuasSauna').addEventListener('click', function() {
             saunaClickCount++;
             
-            // Animoi kaikki höyryt
             for (let i = 1; i <= 5; i++) {
                 const steam = document.getElementById('steamSauna' + i);
                 steam.classList.remove('animate');
-                void steam.offsetWidth; // Trigger reflow
+                void steam.offsetWidth;
                 
-                // Lisää pieni viive jokaiselle höyrylle
                 setTimeout(() => {
                     steam.classList.add('animate');
                 }, i * 50);
             }
             
-            // Soita sihinä
             playSizzle();
-            
-            // Näytä valitusteksti
             showComplaint();
         });
 
-        // Näytä satunnainen valitus (vain joka 3. klikkauksella)
         function showComplaint() {
-            // Näytä teksti vain joka 3. klikkauksella
-            if (saunaClickCount % 3 !== 0) {
-                return;
-            }
+            if (saunaClickCount % 3 !== 0) return;
             
             const container = document.getElementById('kiuasSauna').parentElement;
             
-            // Poista vanha teksti jos on
             const oldComplaint = container.querySelector('.complaint-text');
-            if (oldComplaint) {
-                oldComplaint.remove();
-            }
+            if (oldComplaint) oldComplaint.remove();
             
-            // Valitse teksti (5+ klikkauksella mahdollisuus paljastukseen)
             let text;
             if (saunaClickCount >= 6 && Math.random() < 0.3) {
-                // 30% mahdollisuus paljastukseen kun 6+ klikkausta (eli 2. teksti)
                 text = secretComplaints[0];
             } else {
                 text = complaints[Math.floor(Math.random() * complaints.length)];
             }
             
-            // Luo uusi teksti
             const complaint = document.createElement('div');
             complaint.className = 'complaint-text';
             complaint.textContent = text;
             container.appendChild(complaint);
             
-            // Poista automaattisesti animaation jälkeen
-            setTimeout(() => {
-                complaint.remove();
-            }, 2500);
+            setTimeout(() => complaint.remove(), 2500);
         }
 
-        // Laskuri seuraavaan paljastukseen (2 viikkoa eteenpäin)
         const nextReveal = new Date('2026-02-28T22:00:00').getTime();
+        let puzzlepieces = [];
+        let selectedPiece = null;
+        let puzzleInitialized = false;
 
         function updateFriendsCountdown() {
             const now = new Date().getTime();
             const distance = nextReveal - now;
 
             if (distance < 0) {
-                document.getElementById('friendsCountdown').innerHTML = 
-                    '<div style="font-size: 2em; color: #ff69b4;">🎉 UUTTA SISÄLTÖÄ TULOSSA PIAN! 🎉</div>';
+                if (!puzzleInitialized) {
+                    document.getElementById('friendsCountdownContainer').style.display = 'none';
+                    document.getElementById('friendsTitle').textContent = '🧩 Palapeli-haaste! 🍻';
+                    document.getElementById('friendsEmoji').textContent = '🧩 🍺 🎯';
+                    document.getElementById('friendsInfo').textContent = '';
+                    document.getElementById('puzzleGame').classList.add('active');
+                    document.getElementById('swedenSection').style.display = 'block';
+                    initPuzzle();
+                    puzzleInitialized = true;
+                }
                 return;
             }
 
@@ -785,10 +955,148 @@
             document.getElementById('friendsSeconds').textContent = String(seconds).padStart(2, '0');
         }
 
+        function initPuzzle() {
+            const container = document.getElementById('puzzleContainer');
+            container.innerHTML = '';
+            puzzlepieces = [];
+            
+            for (let i = 0; i < 9; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'puzzle-piece';
+                piece.dataset.correctIndex = i;
+                piece.dataset.currentIndex = i;
+                
+                const row = Math.floor(i / 3);
+                const col = i % 3;
+                piece.style.backgroundImage = 'url("oispa-kaljaa.png")';
+                piece.style.backgroundPosition = `${col * 50}% ${row * 50}%`;
+                
+                piece.addEventListener('click', () => selectPiece(piece));
+                container.appendChild(piece);
+                puzzlepieces.push(piece);
+            }
+            
+            setTimeout(() => shufflePuzzle(), 100);
+        }
+
+        function shufflePuzzle() {
+            const indices = Array.from({length: 9}, (_, i) => i);
+            for (let i = indices.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [indices[i], indices[j]] = [indices[j], indices[i]];
+            }
+            
+            puzzlepieces.forEach((piece, containerIndex) => {
+                const imageIndex = indices[containerIndex];
+                piece.dataset.currentIndex = imageIndex;
+                
+                const row = Math.floor(imageIndex / 3);
+                const col = imageIndex % 3;
+                piece.style.backgroundPosition = `${col * 50}% ${row * 50}%`;
+            });
+        }
+
+        function selectPiece(piece) {
+            if (piece.classList.contains('correct')) return;
+            
+            if (!selectedPiece) {
+                selectedPiece = piece;
+                piece.style.border = '3px solid #ffd700';
+            } else {
+                if (selectedPiece === piece) {
+                    piece.style.border = '2px solid rgba(255, 255, 255, 0.3)';
+                    selectedPiece = null;
+                } else {
+                    swapPieces(selectedPiece, piece);
+                    selectedPiece.style.border = '2px solid rgba(255, 255, 255, 0.3)';
+                    piece.style.border = '2px solid rgba(255, 255, 255, 0.3)';
+                    selectedPiece = null;
+                    checkPuzzle();
+                }
+            }
+        }
+
+        function swapPieces(piece1, piece2) {
+            const temp = piece1.dataset.currentIndex;
+            piece1.dataset.currentIndex = piece2.dataset.currentIndex;
+            piece2.dataset.currentIndex = temp;
+            
+            const row1 = Math.floor(piece1.dataset.currentIndex / 3);
+            const col1 = piece1.dataset.currentIndex % 3;
+            piece1.style.backgroundPosition = `${col1 * 50}% ${row1 * 50}%`;
+            
+            const row2 = Math.floor(piece2.dataset.currentIndex / 3);
+            const col2 = piece2.dataset.currentIndex % 3;
+            piece2.style.backgroundPosition = `${col2 * 50}% ${row2 * 50}%`;
+        }
+
+        function checkPuzzle() {
+            let allCorrect = true;
+            puzzlepieces.forEach(piece => {
+                if (piece.dataset.correctIndex === piece.dataset.currentIndex) {
+                    piece.classList.add('correct');
+                } else {
+                    piece.classList.remove('correct');
+                    allCorrect = false;
+                }
+            });
+            
+            if (allCorrect) {
+                setTimeout(() => {
+                    document.getElementById('puzzleGame').style.display = 'none';
+                    document.getElementById('pubReveal').classList.add('active');
+                    
+                    const scheduleSection = document.querySelector('.info-section');
+                    if (scheduleSection && !document.getElementById('pubScheduleItem')) {
+                        const pubItem = document.createElement('div');
+                        pubItem.id = 'pubScheduleItem';
+                        pubItem.className = 'info-item';
+                        pubItem.innerHTML = '<strong>Pe 17.7.:</strong> Pubikierros klo 14:00 alkaen';
+                        pubItem.style.animation = 'fadeIn 0.5s ease';
+                        
+                        const returnItem = scheduleSection.querySelector('.info-item:nth-child(4)');
+                        if (returnItem) {
+                            scheduleSection.insertBefore(pubItem, returnItem);
+                        }
+                    }
+                    
+                    const mapImg = document.getElementById('pubMap');
+                    mapImg.onerror = function() {
+                        this.style.display = 'none';
+                    };
+                }, 500);
+            }
+        }
+
         updateFriendsCountdown();
         setInterval(updateFriendsCountdown, 1000);
 
-        // Biisisoittimen toggle
+        const swedenReveal = new Date('2026-03-14T22:00:00').getTime();
+
+        function updateSwedenCountdown() {
+            const now = new Date().getTime();
+            const distance = swedenReveal - now;
+
+            if (distance < 0) {
+                document.getElementById('swedenCountdown').innerHTML = 
+                    '<div style="font-size: 2em; color: #fecc00;">🎉 NYT PALJASTUU! 🇸🇪</div>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('swedenDays').textContent = String(days).padStart(2, '0');
+            document.getElementById('swedenHours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('swedenMinutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('swedenSeconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateSwedenCountdown();
+        setInterval(updateSwedenCountdown, 1000);
+
         function toggleMusic() {
             const player = document.getElementById('musicPlayer');
             const button = document.getElementById('musicButton');
